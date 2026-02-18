@@ -17,7 +17,8 @@
     #create writer
     #ask user for desired username
     #read to check if any other user names match 
-    #if it does ask if they would like to login instead of to choose a different username
+    #if it does 
+        #ask if they would like to login instead of to choose a different username
     #create dictionary with username set to their chosen username
     #ask user for password
     #import my previous password strength checker
@@ -33,11 +34,29 @@
 #user login password
     #open user_info csv file in r mode
     #create reader
-    #ask user for desired username
-    #read to check if any other user names match 
-    #if they dont tell user the dont and loop
+    #username loop
+        #ask user for desired username
+        #read to check if any other user names match 
+        #if they dont 
+            #tell user they dont and loop
 
-    #if they do save the index of the username
-    #sak user for password
+        #if they do 
+            #save the index of the username
+    #ask user for password
     #use encypt to encrypt their password 
-    #check 
+    #check inputted password against password associated with the inputted username
+    #if it matches 
+        #set inputted username to username variable
+    #else 
+        #tell the user the password didn't match and ask if they would like to continue trying to login
+    #if they keep trying to log in 
+        #restart loop 
+    #else 
+        #leave function
+
+#user log out 
+    #ask user if they are sure they want to log out
+    #if yes
+        #set username to an empty string
+    #else
+        #leave function
