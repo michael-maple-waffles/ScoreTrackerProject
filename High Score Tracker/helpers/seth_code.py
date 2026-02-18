@@ -24,8 +24,8 @@
     #import my previous password strength checker
     #check password strength and ask if they want to confirm the password 
 
-    #user encrypt function to encript their password 
-    #save encypted password into the dictionary under password
+    #user encrypt function to encrypt their password 
+    #save encrypted password into the dictionary under password
 
     #update csv file with writer writing the dictionary
     #set username variable as their chosen username
@@ -43,7 +43,7 @@
         #if they do 
             #save the index of the username
     #ask user for password
-    #use encypt to encrypt their password 
+    #use encrypt to encrypt their password 
     #check inputted password against password associated with the inputted username
     #if it matches 
         #set inputted username to username variable
