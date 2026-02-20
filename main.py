@@ -1,5 +1,6 @@
 from helper import 
 from score import highscore
+from rps import play_game
 
 def main():
     print("this is a highscore tracker for rock paper scissors (rps)")
