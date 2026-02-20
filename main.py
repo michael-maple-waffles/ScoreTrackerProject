@@ -1,4 +1,4 @@
-from helper import 
+"""from helper import 
 from score import highscore
 from rps import play_game
 
@@ -33,4 +33,4 @@ def main():
 #main called function
 # Call s main functions
 
-main()
+main()"""
