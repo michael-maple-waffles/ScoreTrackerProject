@@ -60,3 +60,178 @@
         #set username to an empty string
     #else
         #leave function
+
+import csv
+import hashlib as hash
+
+
+fieldnames=['username','password']
+username=''
+
+
+def passcheck():
+    list=["`","~","!","@","#","$","%","^","&","*","(",")","'",'"',"-","_","=","+","[","]","{","}","|",";",":",",","<",".",">","/","?"]
+    points=int(0)
+
+    password=input("Enter desired password:\n")
+
+    if len(password) >= 8:
+        char=True
+    else:
+        char=False
+
+    if password.isdigit():
+        numb=True
+    else:
+        numb=False
+
+    if password.isupper():
+        upp=True
+    else:
+        upp=False
+
+    if password.islower():
+        low=True
+    else:
+        low=False
+
+    special=False
+    for cha in password:
+        if cha in list:
+            special=True
+            break
+        else: 
+            continue
+
+    if char:
+        print("your password is long enough")
+        points+=1
+    else:
+        print("your password should be 8+ characters long.")
+    if numb:
+        print("your password contains a number")
+        points+=1
+    else:
+        print("For a better password add a number")
+    if upp:
+        print("your password contains an uppercase letter")
+        points+=1
+    else:
+        print("For a better password add an uppercase letter")
+    if low:
+        print("your password contains a lowercase letter")
+        points+=1
+    else:
+        print("For a better password add a lowercase letter")
+    if special:
+        print("your password contains a special character")
+        points+=1
+    else:
+        print("For a better password add aspecial character")
+
+    if points>=5:
+        print("Congladulatuions, your password is very strong!")
+    elif points>=4:
+        print("goob job, your password is pretty strong.")
+    elif points>=3:
+        print("Nice, your password is decent, but maybe consider improving it?")
+    elif points>=2:
+        print("please improve your password it's kind of weak")
+    elif points>=1:
+        print("you need to improve your password it's very weak")
+    else:
+        print("Okay, I understand that having a super weak password makes it easier to log into stuff,\nbut seriously man in todays day and age hackers are every where you need to have a strong password, \nso please change it and try to learn from this experience.")
+    
+    while True:
+        inp=input("Confirm password (y/n)")
+        match inp:
+            case 'y':
+                passwrd=password.encode("utf-8")
+                return passwrd
+            case 'n':
+                return passcheck()
+            case _:
+                continue
+
+def encrypt(password):
+    sha256=hash.sha256()
+    sha256.update(password)
+    x=sha256.hexdigest()
+    return x
+
+
+def register():
+    with open("documents/user_info.csv", 'r+' , newline='') as csvfile:
+        reader=csv.reader(csvfile)
+        writer=csv.writer(csvfile)
+        while True:
+            inp=input("What would you like your username to be?")
+            lines=list(reader)
+            usernames=[]
+            for line in reader:
+                usernames.append(line[0])
+            if inp in usernames:
+                print("Sorry, Username is already taken")
+                continue
+            else:
+                break
+        password=passcheck()
+        epass=encrypt(password)
+        info=[inp,epass]
+
+        writer.writerow(info)
+        return inp
+
+
+def login(username):
+    with open("documents/user_info.csv", 'r+' , newline='') as csvfile:
+        reader=csv.reader(csvfile)
+        header=next(reader)
+        usernames=[]
+        for line in reader:
+            usernames.append(line[0])
+        users=[]
+        for line in reader:
+            users.append(  {header[0]:line[0],
+                    header[1]:line[1]})
+        
+    while True:
+        usr=input("Username:\n").strip()
+        if usr in usernames:
+            index=usernames.index(usr)
+            break
+        else:
+            print("No matching usernames found")
+    
+    while True:
+        inp=input("Password:\n").strip()
+        epass=encrypt(inp)
+        if epass==users[index][1]:
+            index=usernames.index(inp)
+            username=usr
+            return username
+        else:
+            print("Password doesn't match the password")
+            inp=input("Would you like to try log in again?\nIf you would like to recover and change your password contact us at seth.white@ucas-edu.net\n (y/n)")
+            match inp:
+                case 'y':
+                    continue
+                case 'n':
+                    break
+                case _:
+                    continue
+
+def logout(username):
+    while True:
+        inp=input("would you like to logout?\n(y/n)")
+        match inp:
+            case "y":
+                username=""
+                return username
+            case "n":
+                return username
+            case _:
+                continue
+
+
+register()
