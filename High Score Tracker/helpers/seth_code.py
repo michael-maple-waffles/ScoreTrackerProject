@@ -146,7 +146,8 @@ def passcheck():
         inp=input("Confirm password (y/n)")
         match inp:
             case 'y':
-                return password
+                passwrd=password.encode("utf-8")
+                return passwrd
             case 'n':
                 return passcheck()
             case _:
@@ -155,15 +156,17 @@ def passcheck():
 def encrypt(password):
     sha256=hash.sha256()
     sha256.update(password)
-    return sha256.hexdigest()
+    x=sha256.hexdigest()
+    return x
 
-def register(fieldnames=['username','password']):
+
+def register():
     with open("documents/user_info.csv", 'r+' , newline='') as csvfile:
         reader=csv.reader(csvfile)
-        writer=csv.DictWriter(csvfile,fieldnames=fieldnames)
+        writer=csv.writer(csvfile)
         while True:
             inp=input("What would you like your username to be?")
-
+            lines=list(reader)
             usernames=[]
             for line in reader:
                 usernames.append(line[0])
@@ -174,12 +177,13 @@ def register(fieldnames=['username','password']):
                 break
         password=passcheck()
         epass=encrypt(password)
-        info={'username':inp,'password':epass}
+        info=[inp,epass]
+
         writer.writerow(info)
         return inp
 
 
-def login():
+def login(username):
     with open("documents/user_info.csv", 'r+' , newline='') as csvfile:
         reader=csv.reader(csvfile)
         header=next(reader)
@@ -192,9 +196,9 @@ def login():
                     header[1]:line[1]})
         
     while True:
-        inp=input("Username:\n").strip()
-        if inp in usernames:
-            index=usernames.index(inp)
+        usr=input("Username:\n").strip()
+        if usr in usernames:
+            index=usernames.index(usr)
             break
         else:
             print("No matching usernames found")
@@ -204,22 +208,30 @@ def login():
         epass=encrypt(inp)
         if epass==users[index][1]:
             index=usernames.index(inp)
-            break
+            username=usr
+            return username
         else:
-            print("No matching usernames found")
-    #if it matches 
-        #set inputted username to username variable
-    #else 
-        #tell the user the password didn't match and ask if they would like to continue trying to login
-    #if they keep trying to log in 
-        #restart loop 
-    #else 
-        #leave function
+            print("Password doesn't match the password")
+            inp=input("Would you like to try log in again?\nIf you would like to recover and change your password contact us at seth.white@ucas-edu.net\n (y/n)")
+            match inp:
+                case 'y':
+                    continue
+                case 'n':
+                    break
+                case _:
+                    continue
 
-#user log out 
-    #ask user if they are sure they want to log out
-    #if yes
-        #set username to an empty string
-    #else
-        #leave function
+def logout(username):
+    while True:
+        inp=input("would you like to logout?\n(y/n)")
+        match inp:
+            case "y":
+                username=""
+                return username
+            case "n":
+                return username
+            case _:
+                continue
 
+
+register()
