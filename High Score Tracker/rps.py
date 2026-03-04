@@ -1,5 +1,4 @@
 
-
 def gam():
     import random
 
