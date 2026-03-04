@@ -27,11 +27,11 @@ No further downloads necesary
 ***
 CheesyDevil
 michael-maple-waffles
-*Dean's Github username*
+Deanrobert-dell
 
 ## License
 ***
-Copy right
+Copyright (c) 2026 Utah County Academy of Sciences. All rights reserved.
 
 ## contributions
 How to contribute
