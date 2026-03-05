@@ -31,4 +31,12 @@ michael-maple-waffles
 Deanrobert-dell
 
 ## License
+***
 Copyright (c) 2026 Utah County Academy of Sciences. All rights reserved.
+
+## contributions
+1. Fork the Project.
+2. Create your Branch ().
+3. Commit your Changes ().
+4. Push to the Branch ().
+5. Open a Pull Request.
