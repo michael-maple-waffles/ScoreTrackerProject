@@ -2,7 +2,7 @@
 
 import csv
 
-def gettingScores(username, scores_csv, mode):
+def gettingScores(username = '', scores_csv = '/workspaces/ScoreTrackerProject/documents/scores.csv', mode = 'all'):
     #try
     def reading():
         try:
@@ -45,11 +45,16 @@ def gettingScores(username, scores_csv, mode):
     
 def submittingScores(username, new_scores):
     read_info = gettingScores('NULL', '/workspaces/ScoreTrackerProject/documents/scores.csv', 'all')
+
+
+
     if username in read_info.keys():
         for item in new_scores:
-            read_info[username].append(item)
+            read_info[username].append(str(item))
+        read_info[username] = list(set(read_info[username]))
+        print(read_info[username])
     else:
-        read_info[username] = new_scores
+        read_info[username] = list(set(new_scores))
         print(read_info[username])
     writeable_info = []
     for item in read_info:
@@ -76,10 +81,4 @@ def submittingScores(username, new_scores):
         print("this file doesn't exist")
     else:
         print("scores have been updated.")
-    
-
-
-submittingScores('Personthree', [21,60,89])
-
-
 
