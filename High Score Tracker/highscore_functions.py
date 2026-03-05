@@ -45,28 +45,37 @@ def gettingScores(username, scores_csv, mode):
     
 def submittingScores(username, new_scores):
     read_info = gettingScores('NULL', '/workspaces/ScoreTrackerProject/documents/scores.csv', 'all')
-    read_info[username].append(new_scores)
+    for item in new_scores:
+        read_info[username].append(item)
     writeable_info = []
     for item in read_info:
-        #print(item)
-        #piece = {'Username' : item}
-        pass
+        print(item)
+        set_to_send = ''
+        for score in read_info[item]:
+            if set_to_send != '':
+                set_to_send = f'{set_to_send}.{str(score)}'
+            else:
+                set_to_send = f"{set_to_send}{str(score)}"
+        set_to_send = f"[{set_to_send}]"
+        piece = {'Username' : item, 'Scores' : set_to_send}
+        print(piece)
+        writeable_info.append(piece)
 
 
-    """try:
-        with open('/workspaces/ScoreTrackerProject/documents/scores.csv', 'w'):
-            feildnames = ['Username', 'Scores']
-            writer = csv.DictWriterwriter()"""
+    try:
+        with open('/workspaces/ScoreTrackerProject/documents/scores.csv', 'w') as csv_file:
+            fieldnames = ['Username', 'Scores']
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            writer.writerow("Username,Scores")
+            writer.writerows(writeable_info)
+    except:
+        print("this file doesn't exist")
+    else:
+        print("scores have been updated.")
     
 
 
 submittingScores('PersonOne', [12,17])
-            
-
-            
-        
-    
-print(gettingScores("PersonOne", "/workspaces/ScoreTrackerProject/documents/scores.csv", 'spec'))
 
 
 
