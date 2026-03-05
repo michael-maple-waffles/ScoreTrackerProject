@@ -146,16 +146,16 @@ def passcheck():
         inp=input("Confirm password (y/n)")
         match inp:
             case 'y':
-                passwrd=password.encode("utf-8")
-                return passwrd
+                return password
             case 'n':
                 return passcheck()
             case _:
                 continue
 
 def encrypt(password):
+    passwrd=password.encode('utf-8')
     sha256=hash.sha256()
-    sha256.update(password)
+    sha256.update(passwrd)
     x=sha256.hexdigest()
     return x
 
@@ -188,12 +188,12 @@ def login(username):
         reader=csv.reader(csvfile)
         header=next(reader)
         usernames=[]
+        passwords=[]
         for line in reader:
             usernames.append(line[0])
-        users=[]
-        for line in reader:
-            users.append(  {header[0]:line[0],
-                    header[1]:line[1]})
+            passwords.append(line[1])
+            
+        
         
     while True:
         usr=input("Username:\n").strip()
@@ -206,8 +206,8 @@ def login(username):
     while True:
         inp=input("Password:\n").strip()
         epass=encrypt(inp)
-        if epass==users[index][1]:
-            index=usernames.index(inp)
+        print(usernames)
+        if epass==passwords[index]:
             username=usr
             return username
         else:
@@ -234,4 +234,6 @@ def logout(username):
                 continue
 
 
-register()
+username = login(username)
+
+print(username)
