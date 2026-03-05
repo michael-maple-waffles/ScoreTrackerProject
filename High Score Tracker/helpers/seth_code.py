@@ -159,7 +159,6 @@ def encrypt(password):
     x=sha256.hexdigest()
     return x
 
-
 def register():
     with open("documents/user_info.csv", 'r+' , newline='') as csvfile:
         reader=csv.reader(csvfile)
@@ -182,8 +181,7 @@ def register():
         writer.writerow(info)
         return inp
 
-
-def login(username):
+def login():
     with open("documents/user_info.csv", 'r+' , newline='') as csvfile:
         reader=csv.reader(csvfile)
         header=next(reader)
@@ -208,8 +206,7 @@ def login(username):
         epass=encrypt(inp)
         print(usernames)
         if epass==passwords[index]:
-            username=usr
-            return username
+            return usr
         else:
             print("Password doesn't match the password")
             inp=input("Would you like to try log in again?\nIf you would like to recover and change your password contact us at seth.white@ucas-edu.net\n (y/n)")
@@ -226,8 +223,7 @@ def logout(username):
         inp=input("would you like to logout?\n(y/n)")
         match inp:
             case "y":
-                username=""
-                return username
+                return ""
             case "n":
                 return username
             case _:

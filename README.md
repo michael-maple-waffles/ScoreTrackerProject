@@ -11,7 +11,7 @@ when the user opens project, they have the choice to login or to register, once 
 3. play game or check highscore
 4. logout or repeat steps 2 and 3, I'm not your mom 
 
-## list of key features
+## List of key features
 
 games
 login/logout functionality
@@ -19,15 +19,14 @@ encrypted password protection
 -list of important things the project does(with descriptions)
 -often includes emojis
 
-## installation instructions
+## Installation instructions
 First  download Code Runner in the extentions tab,
 Next go your settings and go to Run Code configuration under the extensions tab,
 Finally turn on Run In Terminal
 
 
-## contributers
-
-CheesyDevil
+## Contributers
+CheesyDevil, password encryptoin, login logout functionality, registration
 michael-maple-waffles
 Deanrobert-dell
 
