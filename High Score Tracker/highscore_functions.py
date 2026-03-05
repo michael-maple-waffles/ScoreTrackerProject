@@ -45,8 +45,12 @@ def gettingScores(username, scores_csv, mode):
     
 def submittingScores(username, new_scores):
     read_info = gettingScores('NULL', '/workspaces/ScoreTrackerProject/documents/scores.csv', 'all')
-    for item in new_scores:
-        read_info[username].append(item)
+    if username in read_info.keys():
+        for item in new_scores:
+            read_info[username].append(item)
+    else:
+        read_info[username] = new_scores
+        print(read_info[username])
     writeable_info = []
     for item in read_info:
         print(item)
@@ -66,7 +70,7 @@ def submittingScores(username, new_scores):
         with open('/workspaces/ScoreTrackerProject/documents/scores.csv', 'w') as csv_file:
             fieldnames = ['Username', 'Scores']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-            writer.writerow("Username,Scores")
+            writer.writeheader()
             writer.writerows(writeable_info)
     except:
         print("this file doesn't exist")
@@ -75,7 +79,7 @@ def submittingScores(username, new_scores):
     
 
 
-submittingScores('PersonOne', [12,17])
+submittingScores('Personthree', [21,60,89])
 
 
 
