@@ -46,6 +46,7 @@ def gam():
         elif user_input == 3:
             user_move = (scissor)
         elif user_input == 4:
+            user_move = 0
             print ("quiting")
             break
         else:
@@ -86,12 +87,14 @@ def gam():
         if comp_score >= 5:
             print ("computer won, you suck")
             print ("your highscore was", user_score)
+            scores = [user_score]
+            return scores
             break
         print ("your score is", user_score, "computer score is", comp_score)
         
 
 
-    print (user_move)
+    print ("user move is", user_move)
 gam()
 
 
