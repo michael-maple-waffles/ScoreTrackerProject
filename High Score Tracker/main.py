@@ -1,4 +1,5 @@
 from rps import gam
+from highscore_functions import gettingScores
 from highscore_functions import submittingScores
 from helpers.seth_code import login
 from helpers.seth_code import logout
@@ -9,15 +10,19 @@ username=''
 def menu():
     while True:
         if username:
-            inp=input("What would you like to do\n(1) Play Rock Paper Scissors\n(2) View score board\n(3) Logout")
+            inp=input("What would you like to do\n(1) Play Rock Paper Scissors\n(2) View score board\n(3) view your scores\n(4) Logout")
             match inp:
                 case '1':
-                    gam()
+                    score=list(gam())
+                    submittingScores(username,score)
                     break
                 case '2':
-                    
+                    gettingScores(username,'documents/scores.csv','all')
                     break
                 case '3':
+                    gettingScores(username,'documents/scores.csv','spec')
+                    break
+                case '4':
                     username=logout(username)
                     break
                 case _:
