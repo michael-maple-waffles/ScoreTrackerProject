@@ -48,6 +48,7 @@ def gam():
         elif user_input == 4:
             user_move = 0
             print ("quiting")
+            return [user_score]
             break
         else:
             print("error")
