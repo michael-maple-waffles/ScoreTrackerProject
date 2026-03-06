@@ -10,34 +10,36 @@ username=''
 def menu():
     while True:
         if username:
-            inp=input("What would you like to do\n(1) Play Rock Paper Scissors\n(2) View score board\n(3) view your scores\n(4) Logout")
-            match inp:
-                case '1':
-                    score=list(gam())
-                    submittingScores(username,score)
-                    break
-                case '2':
-                    gettingScores(username,'documents/scores.csv','all')
-                    break
-                case '3':
-                    gettingScores(username,'documents/scores.csv','spec')
-                    break
-                case '4':
-                    username=logout(username)
-                    break
-                case _:
-                    continue
+            while True:
+                inp=input("What would you like to do\n(1) Play Rock Paper Scissors\n(2) View score board\n(3) view your scores\n(4) Logout")
+                match inp:
+                    case '1':
+                        score=list(gam())
+                        submittingScores(username,score)
+                        break
+                    case '2':
+                        gettingScores(username,'documents/scores.csv','all')
+                        break
+                    case '3':
+                        gettingScores(username,'documents/scores.csv','spec')
+                        break
+                    case '4':
+                        username=logout(username)
+                        break
+                    case _:
+                        continue
         else: 
-            inp=input("What would you like to do\n(1) Login\n(2) Register")
-            match inp:
-                case '1':
-                    username=login()
-                    break
-                case '2':
-                    username=register()
-                    break
-                case _:
-                    continue
+            while True:
+                inp=input("What would you like to do\n(1) Login\n(2) Register")
+                match inp:
+                    case '1':
+                        username=login()
+                        break
+                    case '2':
+                        username=register()
+                        break
+                    case _:
+                        continue
 
 
 
