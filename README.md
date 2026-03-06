@@ -1,7 +1,5 @@
 # Name of project
 
-![image of running code(screen shot of propperly runningcode)](relative path to image in repository)
-
 when the user opens project, they have the choice to login or to register, once they succesfully create a account ot login, they can either choose to play the game, or to view the saved highscores corresponding to usernmaes. When the user plays the game the highscore is whatever score they get before the computer gets 5 points, the score is then saved with the username in the highscore csv file.
 
 ## How to use the Project
