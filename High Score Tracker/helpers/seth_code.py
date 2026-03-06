@@ -200,6 +200,14 @@ def login():
             break
         else:
             print("No matching usernames found")
+            inp=input("would you like to continue trying to login? (y/n)")
+            match inp:
+                case "y":
+                    continue
+                case 'n':
+                    return ''
+                case _:
+                    continue
     
     while True:
         inp=input("Password:\n").strip()
