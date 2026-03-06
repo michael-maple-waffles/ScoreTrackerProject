@@ -20,6 +20,7 @@ encrypted password protection
 -often includes emojis
 
 ## Installation instructions
+
 First  download Code Runner in the extentions tab,
 Next go your settings and go to Run Code configuration under the extensions tab,
 Finally turn on Run In Terminal
@@ -31,7 +32,7 @@ michael-maple-waffles
 Deanrobert-dell
 
 ## License
-***
+
 Copyright (c) 2026 Utah County Academy of Sciences. All rights reserved.
 
 ## contributions
