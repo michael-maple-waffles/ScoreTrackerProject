@@ -39,7 +39,10 @@ def gettingScores(username = '', scores_csv = '/workspaces/ScoreTrackerProject/d
             return user_scores
     
     if mode == 'spec':
-        return reading()[username]
+        if username in reading().keys():
+            return reading()[username]
+        else:
+            return "this username does not have any scores yet."
     elif mode == 'all':
         return reading()
     

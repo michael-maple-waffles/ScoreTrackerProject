@@ -95,7 +95,6 @@ def gam():
 
 
     print ("user move is", user_move)
-gam()
 
 
         

@@ -1,13 +1,14 @@
-from rps import gam
+from helpers.rps import gam
 from helpers.highscore_functions import gettingScores
 from helpers.highscore_functions import submittingScores
 from helpers.seth_code import login
 from helpers.seth_code import logout
 from helpers.seth_code import register
 
-username=''
+
 
 def menu():
+    username=''
     while True:
         if username:
             while True:
@@ -18,10 +19,16 @@ def menu():
                         submittingScores(username,score)
                         break
                     case '2':
-                        gettingScores(username,'documents/scores.csv','all')
+                        scores = gettingScores(username,'documents/scores.csv','all')
+                        for item in scores.keys():
+                            print(f"{item} : {scores[item]}")
                         break
                     case '3':
-                        gettingScores(username,'documents/scores.csv','spec')
+                        scores = gettingScores(username,'documents/scores.csv','spec')
+                        if scores == "this username does not have any scores yet.":
+                            print(scores)
+                        else:
+                            print(f"Your scores are: {scores}")
                         break
                     case '4':
                         username=logout(username)
@@ -40,6 +47,8 @@ def menu():
                         break
                     case _:
                         continue
+
+menu()
 
 
 
