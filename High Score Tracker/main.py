@@ -15,7 +15,7 @@ def menu():
                 inp=input("What would you like to do\n(1) Play Rock Paper Scissors\n(2) View score board\n(3) view your scores\n(4) Logout")
                 match inp:
                     case '1':
-                        score=list(gam())
+                        score=list(gam()) 
                         submittingScores(username,score)
                         break
                     case '2':
