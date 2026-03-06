@@ -92,7 +92,7 @@ def scoreDisplay(read_scores = gettingScores()):
     }
 
     ranks = {
-        1 : 'username'
+
     }
 
     for item in read_scores.keys():
