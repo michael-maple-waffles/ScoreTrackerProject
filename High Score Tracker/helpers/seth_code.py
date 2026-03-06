@@ -228,8 +228,3 @@ def logout(username):
                 return username
             case _:
                 continue
-
-
-username = login(username)
-
-print(username)
