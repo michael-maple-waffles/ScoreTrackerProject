@@ -45,7 +45,7 @@ def gettingScores(username = '', scores_csv = '/workspaces/ScoreTrackerProject/d
             return "this username does not have any scores yet."
     elif mode == 'all':
         return reading()
-    
+
 def submittingScores(username, new_scores):
     read_info = gettingScores('NULL', '/workspaces/ScoreTrackerProject/documents/scores.csv', 'all')
 
@@ -84,4 +84,31 @@ def submittingScores(username, new_scores):
         print("this file doesn't exist")
     else:
         print("scores have been updated.")
+
+def scoreDisplay(read_scores = gettingScores()):
+    current_rank = 1
+    before_rank = {
+
+    }
+
+    ranks = {
+        1 : 'username'
+    }
+
+    for item in read_scores.keys():
+        int_scores = []
+        for score in read_scores[item]:
+            int_scores.append(int(score))
+        int_scores.sort(reverse = True)
+
+        before_rank[item] = int_scores[0]
+
+    print(before_rank)
+
+    for user in before_rank.keys():
+        pass
+
+scoreDisplay()
+
+
 
