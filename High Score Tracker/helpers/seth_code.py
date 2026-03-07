@@ -70,7 +70,7 @@ username=''
 
 
 def passcheck():
-    list=["`","~","!","@","#","$","%","^","&","*","(",")","'",'"',"-","_","=","+","[","]","{","}","|",";",":",",","<",".",">","/","?"]
+    special_chars=["`","~","!","@","#","$","%","^","&","*","(",")","'",'"',"-","_","=","+","[","]","{","}","|",";",":",",","<",".",">","/","?"]
     points=int(0)
 
     password=input("Enter desired password:\n")
@@ -79,29 +79,27 @@ def passcheck():
         char=True
     else:
         char=False
+    
+    numb = False
+    upp = False
+    low = False
+    special = False
 
-    if password.isdigit():
-        numb=True
-    else:
-        numb=False
 
-    if password.isupper():
-        upp=True
-    else:
-        upp=False
 
-    if password.islower():
-        low=True
-    else:
-        low=False
+    for letter in password:
 
-    special=False
-    for cha in password:
-        if cha in list:
-            special=True
-            break
-        else: 
-            continue
+        if letter.isdigit():
+            numb=True
+
+        if letter.isupper():
+            upp=True
+
+        if letter.islower():
+            low=True
+
+        if letter in special_chars:
+            special = True
 
     if char:
         print("your password is long enough")
@@ -127,7 +125,7 @@ def passcheck():
         print("your password contains a special character")
         points+=1
     else:
-        print("For a better password add aspecial character")
+        print("For a better password add a special character")
 
     if points>=5:
         print("Congladulatuions, your password is very strong!")
@@ -163,12 +161,12 @@ def register():
     with open("documents/user_info.csv", 'r+' , newline='') as csvfile:
         reader=csv.reader(csvfile)
         writer=csv.writer(csvfile)
+        lines=list(reader)
+        usernames=[]
+        for line in lines:
+            usernames.append(line[0])
         while True:
             inp=input("What would you like your username to be?")
-            lines=list(reader)
-            usernames=[]
-            for line in reader:
-                usernames.append(line[0])
             if inp in usernames:
                 print("Sorry, Username is already taken")
                 continue
@@ -212,7 +210,6 @@ def login():
     while True:
         inp=input("Password:\n").strip()
         epass=encrypt(inp)
-        print(usernames)
         if epass==passwords[index]:
             return usr
         else:

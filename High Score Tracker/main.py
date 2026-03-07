@@ -20,7 +20,7 @@ def menu():
                         submittingScores(username,score)
                         break
                     case '2':
-                        scoreDisplay()
+                        scoreDisplay(read_scores = gettingScores())
                         break
                     case '3':
                         scores = gettingScores(username,'documents/scores.csv','spec')
@@ -28,7 +28,10 @@ def menu():
                             print(scores)
                         else:
                             print(f"Your scores are: {scores}")
-                            scoreDisplay(mode = 'spec', username=username)
+                            try:
+                                scoreDisplay(mode = 'spec', username=username, read_scores = gettingScores())
+                            except:
+                                pass
                         break
                     case '4':
                         username=logout(username)
