@@ -55,13 +55,10 @@ def submittingScores(username, new_scores):
         for item in new_scores:
             read_info[username].append(str(item))
         read_info[username] = list(set(read_info[username]))
-        print(read_info[username])
     else:
         read_info[username] = list(set(new_scores))
-        print(read_info[username])
     writeable_info = []
     for item in read_info:
-        print(item)
         set_to_send = ''
         for score in read_info[item]:
             if set_to_send != '':
@@ -70,7 +67,6 @@ def submittingScores(username, new_scores):
                 set_to_send = f"{set_to_send}{str(score)}"
         set_to_send = f"[{set_to_send}]"
         piece = {'Username' : item, 'Scores' : set_to_send}
-        print(piece)
         writeable_info.append(piece)
 
 
@@ -85,30 +81,50 @@ def submittingScores(username, new_scores):
     else:
         print("scores have been updated.")
 
-def scoreDisplay(read_scores = gettingScores()):
-    current_rank = 1
-    before_rank = {
+def scoreDisplay(read_scores = gettingScores(), mode = 'all', username = ''):
+    def gathering_rankings():
+        current_rank = 1
+        ties = 1
+        before_rank = []
 
-    }
+        ranks = {
 
-    ranks = {
+        }
 
-    }
+        for item in read_scores.keys():
+            int_scores = []
+            for score in read_scores[item]:
+                int_scores.append(int(score))
+            int_scores.sort(reverse = True)
 
-    for item in read_scores.keys():
-        int_scores = []
-        for score in read_scores[item]:
-            int_scores.append(int(score))
-        int_scores.sort(reverse = True)
+            before_rank.append({'Username' : item, 'High-Score' :int_scores[0]})
 
-        before_rank[item] = int_scores[0]
+        before_rank.sort(key = lambda user: user["High-Score"], reverse=True)
+        
+        current_high_score = None
 
-    print(before_rank)
+        for user in before_rank:
+            if user['High-Score'] == current_high_score:
+                ranks[user['Username']] = [current_rank - ties, user['High-Score']]
+                ties += 1
+                current_rank += 1
+                current_high_score = user['High-Score']
+            else:
+                current_high_score = user['High-Score']
+                ranks[user['Username']] = [current_rank, user['High-Score']]
+                current_rank += 1
+        
+        return ranks
+    
+    ranks = gathering_rankings()
 
-    for user in before_rank.keys():
-        pass
+    if mode == 'all':
+        
+        for rank in ranks.keys():
+            print(f"{rank}|\tRanking : {ranks[rank][0]}|\tAchieved High score : {ranks[rank][1]}")
 
-scoreDisplay()
+    elif mode == 'spec':
+        print(f"Your rank : {ranks[username][0]}\tYour highest score : {ranks[username][1]}")
 
 
 
