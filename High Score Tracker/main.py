@@ -1,6 +1,7 @@
 from helpers.rps import gam
 from helpers.highscore_functions import gettingScores
 from helpers.highscore_functions import submittingScores
+from helpers.highscore_functions import scoreDisplay
 from helpers.seth_code import login
 from helpers.seth_code import logout
 from helpers.seth_code import register
@@ -19,9 +20,7 @@ def menu():
                         submittingScores(username,score)
                         break
                     case '2':
-                        scores = gettingScores(username,'documents/scores.csv','all')
-                        for item in scores.keys():
-                            print(f"{item} : {scores[item]}")
+                        scoreDisplay()
                         break
                     case '3':
                         scores = gettingScores(username,'documents/scores.csv','spec')
@@ -29,6 +28,7 @@ def menu():
                             print(scores)
                         else:
                             print(f"Your scores are: {scores}")
+                            scoreDisplay(mode = 'spec', username=username)
                         break
                     case '4':
                         username=logout(username)
