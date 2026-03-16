@@ -2,7 +2,7 @@
 
 import csv
 
-def gettingScores(username = '', scores_csv = '/workspaces/ScoreTrackerProject/documents/scores.csv', mode = 'all'):
+def gettingScores(username = '', scores_csv = 'documents/scores.csv', mode = 'all'):
     #try
     def reading():
         try:
@@ -47,7 +47,7 @@ def gettingScores(username = '', scores_csv = '/workspaces/ScoreTrackerProject/d
         return reading()
 
 def submittingScores(username, new_scores):
-    read_info = gettingScores('NULL', '/workspaces/ScoreTrackerProject/documents/scores.csv', 'all')
+    read_info = gettingScores('NULL', 'documents/scores.csv', 'all')
 
 
 
@@ -71,7 +71,7 @@ def submittingScores(username, new_scores):
 
 
     try:
-        with open('/workspaces/ScoreTrackerProject/documents/scores.csv', 'w') as csv_file:
+        with open('documents/scores.csv', 'w') as csv_file:
             fieldnames = ['Username', 'Scores']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
